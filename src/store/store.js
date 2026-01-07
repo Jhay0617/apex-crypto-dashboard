@@ -2,6 +2,7 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import localStorage from "redux-persist/lib/storage";
 import watchListReducer from "./watchListSlice";
 import preferencesReducer from "./preferencesSlice";
+import themeReducer from "./themeSlice";
 import {
   FLUSH,
   PAUSE,
@@ -20,6 +21,7 @@ const persistConfig = {
 const rootReducer = combineReducers({
   watchlist: watchListReducer,
   preferences: preferencesReducer,
+  theme: themeReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

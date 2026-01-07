@@ -9,6 +9,7 @@ export const useTransformData = () => {
         current_price: data.current_price,
         price_change_percentage_24h: data.price_change_percentage_24h,
         market_cap: data.market_cap,
+        market_cap_rank: data.market_cap_rank,
         total_volume: data.total_volume,
         sparkline_in_7d: data.sparkline_in_7d,
       };

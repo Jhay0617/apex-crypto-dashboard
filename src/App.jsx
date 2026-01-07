@@ -5,6 +5,12 @@ import Asset from "./pages/Asset";
 import Watchlist from "./pages/Watchlist";
 import Market from "./pages/Market";
 import Applayout from "./ui/Applayout";
+import GlobalStyles from "./styles/GlobalStyles";
+import { ThemeProvider } from "styled-components";
+import { useSelector } from "react-redux";
+import { themeMode } from "./store/themeSlice";
+import { darkTheme, lightTheme } from "./styles/Theme";
+import { Toaster } from "sonner";
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -36,10 +42,23 @@ const router = createBrowserRouter([
   },
 ]);
 function App() {
+  const mode = useSelector(themeMode);
+  const activeTheme = mode === "dark" ? darkTheme : lightTheme;
+
   return (
-    <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} />
-    </QueryClientProvider>
+    <ThemeProvider theme={activeTheme}>
+      <Toaster
+        position="top-center"
+        richColors
+        closeButton
+        expand={false}
+        duration={2000}
+      />
+      <GlobalStyles />
+      <QueryClientProvider client={queryClient}>
+        <RouterProvider router={router} />
+      </QueryClientProvider>
+    </ThemeProvider>
   );
 }
 
