@@ -2,19 +2,18 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   currency: "usd",
-  isDarkMode: true,
-  lastVisited: Date.now(),
 };
 
 const preferencesSlice = createSlice({
   name: "preferences",
   initialState,
   reducers: {
-    setCurrency(state, action) {},
-    toggleTheme(state, action) {},
+    setCurrency(state, action) {
+      state.currency = action.payload;
+    },
   },
 });
 
-export const { setCurrency, toggleTheme } = preferencesSlice.actions;
-
+export const { setCurrency } = preferencesSlice.actions;
+export const selectCurrentCurrency = (state) => state.preferences.currency;
 export default preferencesSlice.reducer;

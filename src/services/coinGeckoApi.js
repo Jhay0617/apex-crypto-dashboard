@@ -1,5 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { useTransformData } from "../helpers/useTransformData";
+import { useSelector } from "react-redux";
+import { selectCurrentCurrency } from "../store/preferencesSlice";
 
 const fetchCoins = async (currency = "usd") => {
   try {
@@ -24,7 +26,8 @@ const fetchCoins = async (currency = "usd") => {
   }
 };
 
-export const useFetchCoins = (currency = "usd") => {
+export const useFetchCoins = () => {
+  const currency = useSelector(selectCurrentCurrency);
   const transformData = useTransformData();
   const { data, isLoading, error } = useQuery({
     queryKey: ["coins", currency],

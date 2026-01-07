@@ -9,9 +9,12 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { toggleTheme, themeMode } from "../store/themeSlice";
 import Logo from "./Logo";
+import { Badge } from "@mui/material";
+import CurrencyToggle from "./CurrencyToggle";
 
 function Header() {
   const dispatch = useDispatch();
+  const watchlist = useSelector((state) => state.watchlist.items);
   const mode = useSelector(themeMode);
   return (
     <StyledHeader>
@@ -21,12 +24,18 @@ function Header() {
           <Home size={24} /> Home
         </StyledNavLink>
         <StyledNavLink to="/watchlist">
-          <Eye size={24} /> Watch list
+          <Eye size={24} />
+          <Badge badgeContent={watchlist.length} color="primary">
+            Watch list
+          </Badge>
         </StyledNavLink>
         <StyledNavLink to="/market">
           <Newspaper size={24} /> Market News
         </StyledNavLink>
       </NavList>
+      <Actions>
+        <CurrencyToggle />
+      </Actions>
       <Actions>
         <ThemeToggle
           onClick={() => dispatch(toggleTheme())}

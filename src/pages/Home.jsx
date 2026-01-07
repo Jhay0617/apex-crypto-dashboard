@@ -1,4 +1,3 @@
-import { useDispatch, useSelector } from "react-redux";
 import { useFetchCoins } from "../services/coinGeckoApi";
 import {
   HomePageContainer,
@@ -7,19 +6,13 @@ import {
   THead,
   TBody,
   TableRow,
-  TableData,
-  PriceChange,
-  WatchlistButton,
 } from "../styles/HomeStyles";
 
-import { Star } from "lucide-react";
-import { isCoinInWatchList, toggleWatchList } from "../store/watchListSlice";
 import CoinTable from "../ui/CoinTable";
 
 function Home() {
   const { coins, isLoading, error } = useFetchCoins();
-  const dispatch = useDispatch();
-  const isCoinAlreadyExist = useSelector(isCoinInWatchList(coins?.id));
+
   if (isLoading)
     return (
       <HomePageContainer>
