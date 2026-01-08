@@ -21,7 +21,10 @@ function CoinTable({ coin }) {
     <GridRow onClick={() => navigate(`/asset/${coin.id}`)}>
       <Cell style={{ textAlign: "center" }}>
         <WatchlistButton
-          onClick={() => dispatch(toggleWatchList(coin))}
+          onClick={(e) => {
+            e.stopPropagation();
+            dispatch(toggleWatchList(coin));
+          }}
           isWatchlisted={isCoinAlreadyExist}
           aria-label={
             isCoinAlreadyExist ? "Remove from watchlist" : "Add to watchlist"
