@@ -6,26 +6,26 @@ export const StyledHeader = styled.header`
   justify-content: space-between;
   align-items: center;
   padding: 1.2rem 4.8rem;
-  background-color: ${(props) => props.theme.colors.surface};
+  background-color: ${(props) => props.theme.colors.surface}CC;
+  backdrop-filter: blur(12px);
   border-bottom: 1px solid ${(props) => props.theme.colors.border};
   position: sticky;
   top: 0;
   z-index: 1000;
 
   @media (max-width: 768px) {
-    padding: 1rem 2rem;
+    padding: 0.8rem 1.6rem;
+    height: 6rem;
   }
 `;
-
 export const NavList = styled.nav`
   display: flex;
   gap: 3.2rem;
 
   @media (max-width: 768px) {
-    gap: 1.6rem;
+    display: none;
   }
 `;
-
 export const StyledNavLink = styled(NavLink)`
   display: flex;
   align-items: center;

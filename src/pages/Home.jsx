@@ -1,11 +1,8 @@
 import { useFetchCoins } from "../services/coinGeckoApi";
 import {
+  GridHeader,
   HomePageContainer,
-  StyledTable,
   TableWrapper,
-  THead,
-  TBody,
-  TableRow,
 } from "../styles/HomeStyles";
 
 import CoinTable from "../ui/CoinTable";
@@ -28,29 +25,31 @@ function Home() {
 
   return (
     <HomePageContainer>
-      <h1 style={{ fontSize: "2.4rem", fontWeight: "700" }}>Market Overview</h1>
+      <h1
+        style={{ fontSize: "2.4rem", fontWeight: "700", marginBottom: "2rem" }}
+      >
+        Market Overview
+      </h1>
 
       <TableWrapper>
-        <StyledTable aria-label="Cryptocurrency Market Prices">
-          <THead>
-            <TableRow>
-              <th scope="col">#</th>
-              <th scope="col">Name</th>
-              <th scope="col">Price</th>
-              <th scope="col" className="mobile-hide">
-                24h Change
-              </th>
-              <th scope="col" className="tablet-hide">
-                Market Cap
-              </th>
-            </TableRow>
-          </THead>
-          <TBody>
-            {coins?.map((coin) => (
-              <CoinTable coin={coin} key={coin.id} />
-            ))}
-          </TBody>
-        </StyledTable>
+        <GridHeader role="rowgroup">
+          <div role="columnheader"></div>
+          <div role="columnheader">#</div>
+          <div role="columnheader">Name</div>
+          <div role="columnheader">Price</div>
+          <div role="columnheader" className="mobile-hide">
+            24h Change
+          </div>
+          <div role="columnheader" className="tablet-hide">
+            Market Cap
+          </div>
+        </GridHeader>
+
+        <div role="rowgroup">
+          {coins?.map((coin) => (
+            <CoinTable coin={coin} key={coin.id} />
+          ))}
+        </div>
       </TableWrapper>
     </HomePageContainer>
   );

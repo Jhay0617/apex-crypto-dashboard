@@ -14,7 +14,10 @@ import { Toaster } from "sonner";
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      staleTime: 0,
+      staleTime: 50000 * 2,
+      gcTime: 1000 * 60 * 5,
+      retry: 5,
+      retryDelay: (attempt) => Math.min(1000 * 2 ** attempt, 30000),
     },
   },
 });
